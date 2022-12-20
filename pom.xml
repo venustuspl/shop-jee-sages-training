@@ -5,11 +5,11 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>pl.training</groupId>
-    <artifactId>jakarta-lite</artifactId>
+    <groupId>com.chrosciu</groupId>
+    <artifactId>shop-jee</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <name>jdp-jakarta-lite</name>
+    <name>shop-jee</name>
     <packaging>war</packaging>
 
     <properties>
