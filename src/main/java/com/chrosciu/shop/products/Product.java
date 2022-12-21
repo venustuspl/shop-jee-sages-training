@@ -1,12 +1,13 @@
 package com.chrosciu.shop.products;
 
+import java.io.Serializable;
 import lombok.Builder;
 import lombok.Data;
 import org.javamoney.moneta.FastMoney;
 
 @Builder
 @Data
-public class Product {
+public class Product implements Serializable {
     private Long id;
     private String name;
     private String description;
