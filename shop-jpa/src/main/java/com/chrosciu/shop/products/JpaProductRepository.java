@@ -27,4 +27,12 @@ public class JpaProductRepository implements ProductRepository {
     public Product findById(long id) {
         return entityManager.find(Product.class, id);
     }
+
+    @Override
+    public List<Product> findAllExceptType(ProductType productType) {
+        return entityManager
+            .createNamedQuery(Product.FIND_ALL_EXCEPT_TYPE)
+            .setParameter("productType", productType)
+            .getResultList();
+    }
 }
