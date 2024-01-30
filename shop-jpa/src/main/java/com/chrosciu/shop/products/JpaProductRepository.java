@@ -1,9 +1,9 @@
 package com.chrosciu.shop.products;
 
-import java.util.List;
 import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 @Singleton
 public class JpaProductRepository implements ProductRepository {
@@ -31,7 +31,7 @@ public class JpaProductRepository implements ProductRepository {
     @Override
     public List<Product> findAllExceptType(ProductType productType) {
         return entityManager
-            .createNamedQuery(Product.FIND_ALL_EXCEPT_TYPE)
+            .createNamedQuery(Product.FIND_ALL_EXCEPT_TYPE, Product.class)
             .setParameter("productType", productType)
             .getResultList();
     }
@@ -39,7 +39,7 @@ public class JpaProductRepository implements ProductRepository {
     @Override
     public List<Product> findAllCheaperThan(long price) {
         return entityManager
-            .createNamedQuery(Product.FIND_ALL_CHEAPER_THAN)
+            .createNamedQuery(Product.FIND_ALL_CHEAPER_THAN, Product.class)
             .setParameter("price", price)
             .getResultList();
     }

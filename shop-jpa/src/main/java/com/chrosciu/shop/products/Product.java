@@ -1,16 +1,6 @@
 package com.chrosciu.shop.products;
 
 import com.chrosciu.shop.commons.FastMoneyUserType;
-import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.NamedNativeQuery;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -21,6 +11,17 @@ import org.hibernate.annotations.Columns;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 import org.javamoney.moneta.FastMoney;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import java.io.Serializable;
 
 @Builder
 @NoArgsConstructor
@@ -36,7 +37,8 @@ import org.javamoney.moneta.FastMoney;
 )
 @NamedNativeQuery(
     name = Product.FIND_ALL_CHEAPER_THAN,
-    query = "select * from products where value < :price"
+    query = "select * from products where value < :price",
+    resultClass = Product.class
 )
 @TypeDef(name = "fastMoney", typeClass = FastMoneyUserType.class)
 public class Product implements Serializable {
