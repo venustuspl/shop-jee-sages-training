@@ -1,5 +1,7 @@
 package com.chrosciu.shop.products;
 
+import java.math.BigDecimal;
+
 public class ProductInitializer {
     private ProductRepository productRepository = new HashMapProductRepository();
 
@@ -7,14 +9,14 @@ public class ProductInitializer {
         .name("Spring masterclass")
         .description("Praktyczny kurs Spring framework")
         .type(ProductType.VIDEO)
-        .price(PolishMoney.of(1500))
+        .price(BigDecimal.valueOf(1500))
         .build();
 
     private static final Product BOOK_PRODUCT = Product.builder()
         .name("Spring guide")
         .description("Praktyczne ćwiczenia do samodzielnego wykonania")
         .type(ProductType.BOOK)
-        .price(PolishMoney.of(200))
+        .price(BigDecimal.valueOf(200))
         .build();
 
     public void init() {
