@@ -49,5 +49,8 @@ public class ShopInitializer {
         orderRepository.save(order);
 
         log.info("Shop initialized");
+
+        List<Product> productsExceptBooks = productRepository.findAllExceptType(ProductType.BOOK);
+        log.info(String.format("productsExceptBooks : %s", productsExceptBooks));
     }
 }

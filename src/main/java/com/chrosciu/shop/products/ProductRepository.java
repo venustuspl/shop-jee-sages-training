@@ -8,4 +8,5 @@ public interface ProductRepository {
     Product save(Product product);
     List<Product> findAll();
     Product findById(long id);
+    List<Product> findAllExceptType(ProductType productType);
 }
