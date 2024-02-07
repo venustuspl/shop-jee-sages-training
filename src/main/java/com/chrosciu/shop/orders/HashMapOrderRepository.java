@@ -1,9 +1,11 @@
 package com.chrosciu.shop.orders;
 
+import javax.ejb.Singleton;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Singleton
 public class HashMapOrderRepository implements OrderRepository {
     private Map<Long, Order> orders = new HashMap<>();
     private long index = 0;

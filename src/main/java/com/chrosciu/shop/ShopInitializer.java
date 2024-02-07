@@ -21,7 +21,7 @@ import java.util.List;
 public class ShopInitializer {
     @EJB
     private ProductRepository productRepository;
-
+    @EJB
     private OrderRepository orderRepository;
 
     private static final Product VIDEO_PRODUCT = Product.builder()
