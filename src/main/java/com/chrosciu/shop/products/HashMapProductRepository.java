@@ -1,11 +1,13 @@
 package com.chrosciu.shop.products;
 
+import javax.ejb.Singleton;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+@Singleton
 public class HashMapProductRepository implements ProductRepository {
     private Map<Long, Product> products = new HashMap<>();
     private long index = 0;

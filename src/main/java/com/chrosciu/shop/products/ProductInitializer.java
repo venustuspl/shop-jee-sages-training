@@ -4,6 +4,7 @@ package com.chrosciu.shop.products;
 import lombok.extern.jbosslog.JBossLog;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import java.math.BigDecimal;
@@ -12,7 +13,8 @@ import java.math.BigDecimal;
 @Startup
 @JBossLog
 public class ProductInitializer {
-    private ProductRepository productRepository = new HashMapProductRepository();
+    @EJB
+    private ProductRepository productRepository;
 
     private static final Product VIDEO_PRODUCT = Product.builder()
         .name("Spring masterclass")
