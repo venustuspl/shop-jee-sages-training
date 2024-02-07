@@ -1,6 +1,11 @@
-package com.chrosciu.shop.products;
+package com.chrosciu.shop;
 
 
+import com.chrosciu.shop.orders.Order;
+import com.chrosciu.shop.orders.OrderRepository;
+import com.chrosciu.shop.products.Product;
+import com.chrosciu.shop.products.ProductRepository;
+import com.chrosciu.shop.products.ProductType;
 import lombok.extern.jbosslog.JBossLog;
 
 import javax.annotation.PostConstruct;
@@ -8,13 +13,16 @@ import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Singleton
 @Startup
 @JBossLog
-public class ProductInitializer {
+public class ShopInitializer {
     @EJB
     private ProductRepository productRepository;
+
+    private OrderRepository orderRepository;
 
     private static final Product VIDEO_PRODUCT = Product.builder()
         .name("Spring masterclass")
@@ -32,9 +40,14 @@ public class ProductInitializer {
 
     @PostConstruct
     public void init() {
-        log.info("Initializing products");
-        productRepository.save(VIDEO_PRODUCT);
-        productRepository.save(BOOK_PRODUCT);
-        log.info("Products initialized!");
+        log.info("Initializing shop");
+
+        Product savedVideo = productRepository.save(VIDEO_PRODUCT);
+        Product savedBook = productRepository.save(BOOK_PRODUCT);
+
+        Order order = new Order(List.of(savedVideo, savedBook));
+        orderRepository.save(order);
+
+        log.info("Shop initialized");
     }
 }
