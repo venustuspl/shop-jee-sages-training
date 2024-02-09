@@ -47,6 +47,10 @@ public class ShopInitializer {
 
         Order order = new Order(List.of(savedVideo, savedBook));
         orderRepository.save(order);
+        Order order1 = new Order(List.of(savedVideo));
+        orderRepository.save(order);
+        Order order2 = new Order();
+        orderRepository.save(order);
 
         log.info("Shop initialized");
 

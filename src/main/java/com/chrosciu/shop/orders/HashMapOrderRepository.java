@@ -1,19 +1,22 @@
 package com.chrosciu.shop.orders;
 
 import javax.ejb.Singleton;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Singleton
 public class HashMapOrderRepository implements OrderRepository {
+    @PersistenceContext
+    private EntityManager entityManager;
     private Map<Long, Order> orders = new HashMap<>();
     private long index = 0;
 
     @Override
     public Order save(Order order) {
-        order.setId(++index);
-        orders.put(index, order);
+        entityManager.persist(order);
         return order;
     }
 

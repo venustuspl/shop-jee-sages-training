@@ -2,22 +2,30 @@ package com.chrosciu.shop.orders;
 
 
 import com.chrosciu.shop.products.Product;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 
-@RequiredArgsConstructor
+@Builder
 @NoArgsConstructor
-@Data
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
+@Entity
+@Table(name = "orders")
 public class Order implements Serializable {
+    @Id
+    @GeneratedValue
     private Long id;
-    @NonNull
+    @OneToMany
     private List<Product> products;
+
+    public <E> Order(List<E> savedVideo) {
+    }
 
     public BigDecimal getTotalPrice() {
         return products.stream()
